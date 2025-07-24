@@ -1,0 +1,57 @@
+[
+    {
+        "ques": "Who was the father of C?",
+        "options":["Dennis Ritchi","Bjarne Strostroup","Elon Musk"],
+        "correctAns":"Dennis Ritchi"
+    },
+    {
+        "ques": " HTML is used to make? ",
+        "options":["frontend","backend","database"],
+        "correctAns":"frontend"
+    },
+    {
+        "ques": " CSS is used for which purpose?",
+        "options":["skeleton","beautification","connection"],
+        "correctAns":"beautification"
+    },
+    {
+        "ques": "Full form of HTML?",
+        "options":["Hyper Text Markup Language","Hyper Text Makeup Language","HighLevel Texting and Messaging Language"],
+        "correctAns":"Hyper Text Markup Language"
+    },
+    {
+        "ques": "Full form of CSS?",
+        "options":["Character Styling Schedule","Compressed Syntax Styling","Cascading Style Sheets"],
+        "correctAns":"Cascading Style Sheets"
+    },
+    {
+        "ques": " Full Form of URL?",
+        "options":["Uniform Recovery Locator","Uniform Resource Locator","Uninterrupted Remaining List"],
+        "correctAns":"Uniform Resource Locator"
+    },
+    {
+        "ques": " Full form of UI?",
+        "options":["User Interface","User Implementation","Using Integratedsystem"],
+        "correctAns":"User Interface"
+    },
+    {
+        "ques": "PM of India?",
+        "options":["Pandit Nehru","Narendra Modi","Rahul Gandhi"],
+        "correctAns":"Narendra Modi"
+    },
+    {
+        "ques": "full form of IP?",
+        "options":["Indian Penal","Internet Protocol","Information Privacy"],
+        "correctAns":"Internet Protocol"
+    },
+    {
+        "ques": "6-9? ",
+        "options":[3,0,-3],
+        "correctAns":-3
+    }
+
+]
+
+
+
+
