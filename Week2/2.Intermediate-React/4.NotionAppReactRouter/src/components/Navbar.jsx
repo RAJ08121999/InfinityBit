@@ -8,15 +8,15 @@ const Navbar = (props) => {
     let setIsLoggedIn=props.setIsLoggedIn;
 
     return (
-        <div className='flex gap-2 justify-between mx-4 '>
+        <div className='flex justify-between items-center w-11/12 max-w-[1160px] py-1 mx-auto'>
 
             <NavLink to='/'>
-                <img src={logo} alt="logo" loading='lazy' className='w-[160px] h-[60px] rounded-full'></img>
+                <img src={logo} alt="logo" loading='lazy' className='w-[150px] h-[50px] rounded-full'></img>
             </NavLink>
 
             <nav>
 
-                <ul className='flex   gap-4'>
+                <ul className='flex text-slate-100 gap-x-6'>
 
                     <li>
                         <NavLink to = "/">Home</NavLink>
@@ -35,32 +35,34 @@ const Navbar = (props) => {
 
             </nav>
 
-            <div className='flex  gap-2 '>
+            <div className='flex items-center gap-x-4'>
                 {   
                     !isLoggedIn &&
                     <NavLink to ='/login'>
-                        <button>LogIn</button>
+                        <button className='bg-slate-800 text-slate-100 py-[8px] px-[12px] rounded-[8px] border-2 border-slate-700'>Log In</button>
                     </NavLink>
                 }
                 {   
                     !isLoggedIn &&
                     <NavLink to ='/signup'>
-                        <button>SignUp</button>
+                        <button className='bg-slate-800 text-slate-100 py-[8px] px-[12px] rounded-[8px] border-2 border-slate-700'>Sign Up</button>
                     </NavLink>
                 }
                 {   
                     isLoggedIn &&
                     <NavLink to ='/'>
-                        <button onClick={()=>{
+                        <button 
+                        className='bg-slate-800 text-slate-100 py-[8px] px-[12px] rounded-[8px] border-2 border-slate-700'
+                        onClick={()=>{
                             setIsLoggedIn(false);
                             toast.success("Logged Out Successfully!");
-                        }}>LogOut</button>
+                        }}>Log Out</button>
                     </NavLink>
                 }
                 {   
                     isLoggedIn &&
                     <NavLink to ='/dashboard'>
-                        <button>Dashboard</button>
+                        <button className='bg-slate-800 text-slate-100 py-[8px] px-[12px] rounded-[8px] border-2 border-slate-700'>Dashboard</button>
                     </NavLink>
                 }
 
