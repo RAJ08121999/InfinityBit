@@ -13,12 +13,12 @@ const TagPage = () => {
             <Header/>
             <div className='mt-[80px]'>
                 <button
-                className="px-4 py-2 mb-4 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition"
+                className="px-4 py-2 mb-4 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition ml-20"
                 onClick={()=> navigation(-1)}
                 >
                     Back
                 </button>
-                <h2 className='text-blue-700 font-medium text-xl'>
+                <h2 className='text-blue-700 font-medium text-xl flex justify-center items-center gap-x-2'>
                     Blogs Tagged <span>#{tag}</span>
                 </h2>
             </div>

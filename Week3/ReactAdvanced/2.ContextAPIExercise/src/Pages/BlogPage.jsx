@@ -46,14 +46,14 @@ const BlogPage = () => {
             <div>
                 <button
                 onClick={()=> navigation(-1)}
-                className="px-4 py-2 mb-4 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition"
+                className="px-4 py-2 mb-4 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition mx-auto"
                 >
                     Back
                 </button>
             </div>
             {
                 loading ? (<Spinner/>) : blog ? (<div><BlogDetails post={blog}/>
-                <h2>Related Blogs</h2>
+                <h2 className='font-bold mt-6 text-xl underline text-center'>Related Blogs</h2>
                 {
                     relatedBlogs.map( (post ) => (
                         <div key = {post.id}>
