@@ -4,7 +4,7 @@ import { AppContext } from '../context/AppContext'
 const Pagination = () => {
     const {page,handlePageChange,totalPages} = useContext(AppContext);
     return (
-        <div className='w-full flex justify-center items-center border-2 fixed bottom-0 bg-white'>
+        <div className='w-full flex justify-center items-center border-2 fixed bottom-0 bg-white '>
             <div className='flex justify-between w-11/12 max-w-[670px] py-2'>
                 
                 <div className='flex justify-between gap-x-4'>
@@ -26,6 +26,7 @@ const Pagination = () => {
                 </p>
 
             </div>
+
         </div>
     )
 }

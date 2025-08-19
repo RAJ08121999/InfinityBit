@@ -1,21 +1,49 @@
 import React, { useContext, useEffect } from 'react'
-import Header from './components/Header'
-import Blogs from './components/Blogs'
-import Pagination from './components/Pagination'
+import Home from './Pages/Home'
+import TagPage from './Pages/TagPage'
+import CategoryPage from './Pages/CategoryPage'
+import BlogPage from './Pages/BlogPage'
 import { AppContext } from './context/AppContext'
+import { Route, Routes, useLocation, useSearchParams } from 'react-router-dom'
 
 const App = () => {
-  const {fetchBlogPosts} = useContext(AppContext)
+
+  const {fetchBlogPosts} = useContext(AppContext);
+
+  const [searchParams,setSearchParams] = useSearchParams();
+  const location = useLocation();
+
   useEffect(()=>{
-    fetchBlogPosts();
-  },[])
+    const page = searchParams.get("page") ?? 1;
+
+    if(location.pathname.includes("tags")){
+      //iska matlab tag wala page show karna hai
+      const tag = location.pathname.split("/").at(-1).replaceAll("-"," ");
+      fetchBlogPosts(Number(page),tag);
+    }
+    else if(location.pathname.includes("categories")){
+      const category = location.pathname.split("/").at(-1).replaceAll("-"," ");
+      fetchBlogPosts(Number(page),null,category);
+    }
+    else{
+      fetchBlogPosts(Number(page));
+    }
+  },[location.pathname,location.search]);
 
   return (
-    <div className='w-full h-full flex flex-col gapy-1 justify-center items-center'>
-      <Header/>
-      <Blogs/>
-      <Pagination/>
-    </div>
+    
+      <Routes>
+
+        <Route path='/' element={<Home/>}></Route>
+
+        <Route path='/categories/:category' element={<CategoryPage/>}></Route>
+
+        <Route path='/blog/:blogId' element={<BlogPage/>}></Route>
+
+        <Route path='/tags/:tag' element={<TagPage/>}></Route>
+
+      </Routes>
+    
   )
 }
 
