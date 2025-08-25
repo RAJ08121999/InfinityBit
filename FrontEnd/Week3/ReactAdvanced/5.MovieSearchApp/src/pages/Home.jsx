@@ -24,18 +24,23 @@ const Home = () => {
                     const data = await response.json();
                     // console.log("fetched data ",term,data);
                 
+                // if(data.Response === "True"){
+                //     const detailedMovies = await Promise.all(
+                //         data.Search.map(async (movie)=>{
+                //             const detailsRes = await fetch(`${BASE_URL}&i=${movie.imdbID}`);
+                //             return detailsRes.json();
+                //         })
+                //     );
+                //     setAllMovies(detailedMovies);
+                //     setMovies(detailedMovies);
+                // }
 
-                if(data.Response === "True"){
-                    const detailedMovies = await Promise.all(
-                        data.Search.map(async (movie)=>{
-                            const detailsRes = await fetch(`${BASE_URL}&i=${movie.imdbID}`);
-                            return detailsRes.json();
-                        })
-                    );
-                    setAllMovies(detailedMovies);
-                    setMovies(detailedMovies);
+                if(data.Response==="True"){
+                    setAllMovies(data.Search);
+                    setMovies(data.Search);
                 }
-            }catch (error){
+            }
+            catch (error){
                 console.log("Error fetching default movies");
             }
             setLoading(false);
@@ -43,6 +48,17 @@ const Home = () => {
         fetchAllMovies();
         
     },[])
+
+    const fetchMovieDetails = async (imdbID) => {
+        try{
+            const res = await fetch(`${BASE_URL}&i=${imdbID}`);
+            const data = await res.json();
+            return data;
+        }
+        catch(error){
+            console.error("Error in fetching details");
+        }
+    };
 
     return (
         <div className='flex flex-col gap-6'>
@@ -64,7 +80,9 @@ const Home = () => {
                     movies={movies} 
                     allMovies={allMovies}
                     selectedGenre={selectedGenre} 
-                    hasSearched={hasSearched} />
+                    hasSearched={hasSearched}
+                    fetchMovieDetails={fetchMovieDetails}
+                />
             )
         }
         

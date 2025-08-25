@@ -47,7 +47,9 @@ const MovieDetails = () => {
         <div className="max-w-4xl mx-auto bg-slate-400 rounded-lg shadow-xl p-6">
             <div className="flex flex-col md:flex-row gap-6">
                 <img
-                src={movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/300"}
+                src={movie.Poster !== "N/A" 
+                ? movie.Poster 
+                : "https://shorturl.at/F8nUh"}
                 alt={movie.Title}
                 className="w-64 h-auto rounded-lg"
                 />
@@ -62,7 +64,7 @@ const MovieDetails = () => {
 
                     <NavLink
                         to="/"
-                        className="inline-block mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                        className="inline-block mt-6 px-4 py-2 bg-slate-600 text-white rounded hover:bg-slate-900 transition"
                     >
                         Back to Home
                     </NavLink>

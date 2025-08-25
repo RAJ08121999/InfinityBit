@@ -3,7 +3,10 @@ import { NavLink } from 'react-router-dom'
 
 const MovieCard = ({movie}) => {
 
-    const poster = movie.Poster && movie.Poster!== 'N/A' ? movie.Poster : "https://via.placeholder.com/200?text=No+Image";
+    const poster = movie.Poster && movie.Poster!== 'N/A' 
+    ? movie.Poster 
+    : "https://shorturl.at/F8nUh";
+
     return (
         <div className='bg-slate-300 rounded-xl overflow-hidden  transition-all duration-300 flex flex-col hover:scale-110 hover:shadow-2xl h-full w-[300px]'>
             <img
