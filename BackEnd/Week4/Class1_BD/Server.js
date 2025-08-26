@@ -34,7 +34,7 @@ app.post('/api/bullet',(req,res)=>{
 })
 
 const mongoose = require('mongoose');
-mongoose.connect('monogdb://localhost:27017/myDatabase',{
+mongoose.connect('mongodb://localhost:27017/myDatabase',{
     useNewUrlParser:true,
     useUnifiedTopology:true
 })
