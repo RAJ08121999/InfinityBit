@@ -16,7 +16,7 @@ app.use(express.json());
 const todoRoutes = require("./routes/todo");
 
 //mount the todo api routes
-app.use("api/v1",todoRoutes);
+app.use("/api/v1",todoRoutes);
 
 app.listen(PORT,()=>{
     console.log(`server started at port ${PORT}`);
