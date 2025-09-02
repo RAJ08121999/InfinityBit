@@ -5,8 +5,11 @@ const app = express();
 require ('dotenv').config();
 const PORT = process.env.PORT || 4000
 
+//cookie - Parser
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 
-//adding middleware for parsing
+//adding middleware for parsing -> body parser
 app.use(express.json());
 
 

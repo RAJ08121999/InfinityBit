@@ -75,9 +75,9 @@ exports.login = async(req,res)=>{
         }
 
         const payload = {
-            email:user.email,
-            id:user._id,
-            role:user.role,
+            email:user.email,//authentication k kaam ayega
+            id:user._id,//id use karke db se interact karke koi v data nikal sakte hai
+            role:user.role,//authorization me kaam ayega
         }
 
         //verify password and generate a JWT token

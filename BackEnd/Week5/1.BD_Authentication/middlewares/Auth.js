@@ -1,11 +1,15 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
+//Authentication -> Identity verification
+
 exports.auth = (req,res,next)=>{
     try{
         //extract jwt token
         //we can extract token from header, cookie, or body
-        const token = req.body.token;
+        const token = req.body.token || req.cookies.token || req.header("Authorization").replace("Bearer ","");
+        //bearer k bad ek space intentionally rakha gaya hai ye syntax hai
+        //header se token nikalne ka process sabse jyada secure hai
 
         if(!token){
             return res.status(401).json({
@@ -34,7 +38,9 @@ exports.auth = (req,res,next)=>{
     }
 }
 
-//students middleware
+//Authorization -> giving roles
+
+//student middleware
 
 exports.isStudent = (req , res,next) =>{
     try{
