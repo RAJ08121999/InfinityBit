@@ -6,7 +6,7 @@ const fileSchema = new mongoose.Schema({
         required:true,
     },
     imageUrl:{
-        typr:String,
+        type:String,
     },
     tags:{
         type:String,
