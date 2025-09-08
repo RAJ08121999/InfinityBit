@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { deletePost, fetchPosts } from '../API/api';
+import { deletePost, fetchPosts, updatePost } from '../API/api';
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { NavLink } from 'react-router-dom';
 
@@ -67,6 +67,26 @@ const FetchRQ = () => {
     }
   });
 
+  //mutation function to update the post
+
+  const updateMutation = useMutation({
+    mutationFn:(id) => {
+      console.log("updating:",id);
+      return updatePost(id)},
+    onSuccess:(apiData,postId)=>{
+      console.log("Raw api response ",apiData);
+      queryClient.setQueryData(["posts",pageNumber],(postsData)=>{
+        return postsData?.map((curPost) => {
+          return curPost.id === postId ? {...curPost , title: apiData.data.title}:curPost ;
+        });
+      });
+      console.log("updated data",apiData.data.title);
+    },
+    onError: (error)=>{
+      console.error("update failed :",error.response?.data || error.message);
+    },
+  });
+
   if(isLoading) return <p>Loading...</p>;
   if(isError) return <p> Error: {error.message || "Something went wrong !" } </p>;
 
@@ -86,6 +106,11 @@ const FetchRQ = () => {
               className='bg-red-500 px-4 py-2 rounded-xl'
             >
               Delete
+            </button>
+            <button onClick={()=>updateMutation.mutate(post.id)}
+              className='bg-yellow-500 px-4 py-2 rounded-xl'
+            >
+              Update
             </button>
             
           </li>
