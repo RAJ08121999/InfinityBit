@@ -118,3 +118,70 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+
+
+/* <------------------spinner-----------------------> */
+
+
+
+.spinner {
+  position: relative;
+  width: 56px;
+  height: 56px;
+}
+
+.spinner > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 13.4px solid rgba(255,165,0,0.2); /* light orange border */
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: spin-infinity 2s linear infinite;
+  z-index: 0;
+}
+
+.spinner > div::before {
+  content: '';
+  width: 13.4px;
+  height: 13.4px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, orange, yellow); /* orange-yellow gradient */
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: move-infinity 2s infinite linear;
+}
+
+@keyframes spin-infinity {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes move-infinity {
+  0% {
+    transform: translate(-50%, -50%) translateX(-18px);
+  }
+  25% {
+    transform: translate(-50%, -50%) translateX(0) translateY(-10px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateX(18px);
+  }
+  75% {
+    transform: translate(-50%, -50%) translateX(0) translateY(10px);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateX(-18px);
+  }
+}
