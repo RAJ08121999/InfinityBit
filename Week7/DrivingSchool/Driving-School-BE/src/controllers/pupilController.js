@@ -10,6 +10,7 @@ const createPupil = async (req, res) => {
     // req.body contains validated data at this point
     
     // Create new pupil instance
+    console.log("Incoming request body:",req.body);
     const pupil = new Pupil(req.body);
     
     // Save to MongoDB - this will trigger pre-save middleware for additional validation

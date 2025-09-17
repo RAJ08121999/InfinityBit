@@ -13,6 +13,8 @@ const databaseConnection = require('./config/database');
 // Load Swagger documentation
 const swaggerDocument = YAML.load(path.join(__dirname, '../swagger.yaml'));
 
+console.log("DEBUG: PORT from .env =", process.env.PORT);
+
 // Application configuration
 const config = {
   port: process.env.PORT || 3000,
@@ -81,7 +83,7 @@ app.use(express.urlencoded({ extended: true }));
 // Request logging middleware (configurable)
 if (config.enableRequestLogging) {
   app.use((req, res, next) => {
-    logger.debug(`${req.method} ${req.url} - ${req.ip}`);
+    logger.info(`${req.method} ${req.url} - ${req.ip}`);
     next();
   });
 }
@@ -181,7 +183,7 @@ process.on('unhandledRejection', (reason, promise) => {
 if (require.main === module) {
   const server = app.listen(config.port, () => {
     logger.info(`🚀 ${config.appName} started successfully`);
-    logger.info(`📡 Server listening on port ${config.port}`);
+    logger.info(`📡 Server listening on http://localhost:${config.port}`);
     logger.info(`🌍 Environment: ${config.nodeEnv}`);
 
     if (config.healthCheckEnabled) {

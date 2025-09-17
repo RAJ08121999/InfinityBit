@@ -51,26 +51,29 @@ const pupilSchema = new mongoose.Schema({
   
   // Contact Information
   home: {
-    mobile: { 
-      type: String, 
-      trim: true,
-      validate: {
-        validator: function(v) {
-          return !v || /^[\d\s\-\+\(\)]+$/.test(v);
-        },
-        message: 'Invalid mobile number format'
-      }
+    type:{
+      mobile: { 
+        type: String, 
+        trim: true,
+        validate: {
+          validator: function(v) {
+            return !v || /^[\d\s\-\+\(\)]+$/.test(v);
+          },
+          message: 'Invalid mobile number format'
+        }
+      },
+      work: { 
+        type: String, 
+        trim: true,
+        validate: {
+          validator: function(v) {
+            return !v || /^[\d\s\-\+\(\)]+$/.test(v);
+          },
+          message: 'Invalid work number format'
+        }
+      },
     },
-    work: { 
-      type: String, 
-      trim: true,
-      validate: {
-        validator: function(v) {
-          return !v || /^[\d\s\-\+\(\)]+$/.test(v);
-        },
-        message: 'Invalid work number format'
-      }
-    }
+    default:{}
   },
   allowTextMessaging: { 
     type: Boolean, 
@@ -79,46 +82,52 @@ const pupilSchema = new mongoose.Schema({
   
   // Addresses
   pickupAddress: {
-    postcode: { 
-      type: String, 
-      trim: true,
-      uppercase: true,
-      validate: {
-        validator: function(v) {
-          return !v || /^[A-Z]{1,2}[0-9R][0-9A-Z]?\s?[0-9][A-Z]{2}$/i.test(v);
-        },
-        message: 'Invalid UK postcode format'
-      }
+    type:{
+      postcode: { 
+        type: String, 
+        trim: true,
+        uppercase: true,
+        validate: {
+          validator: function(v) {
+            return !v || /^[A-Z]{1,2}[0-9R][0-9A-Z]?\s?[0-9][A-Z]{2}$/i.test(v);
+          },
+          message: 'Invalid UK postcode format'
+        }
+      },
+      houseNo: { 
+        type: String, 
+        trim: true 
+      },
+      address: { 
+        type: String, 
+        trim: true 
+      },
     },
-    houseNo: { 
-      type: String, 
-      trim: true 
-    },
-    address: { 
-      type: String, 
-      trim: true 
-    }
+    default:{}
   },
   homeAddress: {
-    postcode: { 
-      type: String, 
-      trim: true,
-      uppercase: true,
-      validate: {
-        validator: function(v) {
-          return !v || /^[A-Z]{1,2}[0-9R][0-9A-Z]?\s?[0-9][A-Z]{2}$/i.test(v);
-        },
-        message: 'Invalid UK postcode format'
-      }
+    type:{
+      postcode: { 
+        type: String, 
+        trim: true,
+        uppercase: true,
+        validate: {
+          validator: function(v) {
+            return !v || /^[A-Z]{1,2}[0-9R][0-9A-Z]?\s?[0-9][A-Z]{2}$/i.test(v);
+          },
+          message: 'Invalid UK postcode format'
+        }
+      },
+      houseNo: { 
+        type: String, 
+        trim: true 
+      },
+      address: { 
+        type: String, 
+        trim: true 
+      },
     },
-    houseNo: { 
-      type: String, 
-      trim: true 
-    },
-    address: { 
-      type: String, 
-      trim: true 
-    }
+    default:{}
   },
   
   // Extra Details

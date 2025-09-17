@@ -19,7 +19,7 @@ const PupilsList = () => {
         {
           pupils?.map(pupil => (
             <li key={pupil._id}>
-              {pupil.firstName} {pupil.lastName} -- {pupil.licenseType}
+              {pupil.forename} {pupil.surname} -- {pupil.licenseType}
             </li>
           ))
         }
