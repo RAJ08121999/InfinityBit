@@ -24,50 +24,52 @@ const PupilView = () => {
     enabled: !!pupilId, // only run when pupilId exists
   })
 
-  if (isLoading) return <Spinner/>
+  if (isLoading) return <div className='h-screen w-full flex justify-center items-center'><Spinner/></div>
   if (isError) return <p className="text-center text-red-500">{(error as Error).message}</p>
 
   if (!fetchedPupil) return <p className="text-center">No pupil found</p>
 
   return (
-    <div className="max-w-xl mx-auto p-6">
-      <Card className="bg-slate-950 text-gray-300">
-        <CardHeader className="flex flex-row items-center gap-2">
-          <Button
-            variant="ghost"
-            size="icon"
-            className=" hover:bg-slate-600 transition-colors"
-            onClick={() => navigate({ to: "/pupils" })}
-          >
-            <FiArrowLeft className="h-5 w-5 text-blue-400" />
-          </Button>
-          <CardTitle className="text-center font-bold text-xl flex-1">
-            {fetchedPupil.forename} {fetchedPupil.surname}
-          </CardTitle>
-        </CardHeader>
+    <div className="bg-slate-400 min-h-screen p-4">
+      <div className="max-w-xl mx-auto mt-20">
+        <Card className="bg-slate-950 text-gray-300">
+          <CardHeader className="flex flex-row items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              className=" hover:bg-slate-600 transition-colors"
+              onClick={() => navigate({ to: "/pupils" })}
+            >
+              <FiArrowLeft className="h-5 w-5 text-blue-400" />
+            </Button>
+            <CardTitle className="text-center font-bold text-xl flex-1">
+              {fetchedPupil.forename} {fetchedPupil.surname}
+            </CardTitle>
+          </CardHeader>
 
-        <CardContent className="space-y-2">
-          <p>
-            <strong>Date of Birth:</strong> { " "}
-            {new Date (fetchedPupil.dob).toLocaleDateString("en-GB")}
-          </p>
-          <p>
-            <strong>Gender:</strong> {fetchedPupil.gender}
-          </p>
-          <p>
-            <strong>Email:</strong> {fetchedPupil.email || "N/A"}
-          </p>
-          <p>
-            <strong>Mobile:</strong> {fetchedPupil.home?.mobile || "N/A"}
-          </p>
-          <p>
-            <strong>Work:</strong> {fetchedPupil.home?.work || "N/A"}
-          </p>
-          <p>
-            <strong>License Type:</strong> {fetchedPupil.licenseType}
-          </p>
-        </CardContent>
-      </Card>
+          <CardContent className="space-y-2">
+            <p>
+              <strong>Date of Birth:</strong> { " "}
+              {new Date (fetchedPupil.dob).toLocaleDateString("en-GB")}
+            </p>
+            <p>
+              <strong>Gender:</strong> {fetchedPupil.gender}
+            </p>
+            <p>
+              <strong>Email:</strong> {fetchedPupil.email || "N/A"}
+            </p>
+            <p>
+              <strong>Mobile:</strong> {fetchedPupil.home?.mobile || "N/A"}
+            </p>
+            <p>
+              <strong>Work:</strong> {fetchedPupil.home?.work || "N/A"}
+            </p>
+            <p>
+              <strong>License Type:</strong> {fetchedPupil.licenseType}
+            </p>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }

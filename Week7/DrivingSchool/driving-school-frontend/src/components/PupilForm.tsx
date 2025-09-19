@@ -17,7 +17,8 @@ type PupilFormProps = {
 
 export function PupilForm({ form, onSubmit, isPending, buttonLabel , disableEmail}: PupilFormProps) {
   return (
-    <Form {...form}>
+    <div className="max-w-2xl mx-auto mt-6 p-6 bg-slate-200 rounded-lg shadow-2xl">
+      <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         
         {/* First Name */}
@@ -166,6 +167,7 @@ export function PupilForm({ form, onSubmit, isPending, buttonLabel , disableEmai
           {isPending ? "Saving..." : buttonLabel}
         </Button>
       </form>
-    </Form>
+      </Form>
+    </div>
   );
 }

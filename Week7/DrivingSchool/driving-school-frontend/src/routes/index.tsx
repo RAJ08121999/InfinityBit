@@ -6,10 +6,10 @@ export const Route = createFileRoute('/')({
 
 function RouteComponent() {
   return (
-    <div className="max-w-3xl mx-auto py-10 text-center bg-slate-800 h-screen w-screen flex flex-col justify-center items-center">
+    <div className=" mx-auto py-10 text-center bg-slate-800 h-screen w-screen flex flex-col justify-center items-center">
       <h1 className="text-3xl font-bold mb-6 text-amber-700">Welcome to Driving School</h1>
       <p className="text-gray-200 mb-8">
-        Manage your pupils, lessons, and progress in one place.
+        Add View Update and Delete Pupils in one place.
       </p>
 
       <div className="flex justify-center gap-4">

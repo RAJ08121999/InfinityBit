@@ -85,7 +85,7 @@ const table = useReactTable({
 const queryClient = useQueryClient();
 
 
-if (isLoading) return <Spinner />;
+if (isLoading) return <div className='h-screen w-full flex justify-center items-center'><Spinner/></div>;
 if (isError) return <div className="text-xl text-red-600 text-center">Error fetching pupils</div>;
 
 return (
@@ -151,7 +151,7 @@ return (
         </div>
 
       {/* Pagination Controls */}
-        <div className="flex items-center justify-between mt-2 space-x-2 bg-slate-100 border-t border-gray-300 p-3 sticky bottom-0 z-10 w-full">
+        <div className="flex items-center justify-between mt-2 space-x-2 bg-slate-100 border-t border-gray-300 p-3 sticky bottom-0 z-10 w-full rounded-md">
             <Button
             className="btn btn-sm"
             onClick={() => table.previousPage()}

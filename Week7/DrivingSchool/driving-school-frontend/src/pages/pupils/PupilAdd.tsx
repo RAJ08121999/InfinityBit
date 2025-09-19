@@ -87,8 +87,8 @@ const PupilAdd = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto py-10">
-      <h1 className="text-2xl font-semibold mb-6 text-center">Add New Pupil</h1>
+    <div className=" mx-auto p-4 bg-slate-400">
+      <h1 className="text-3xl font-semibold mb-6 text-center">Add New Pupil</h1>
 
       <PupilForm
         form={form}

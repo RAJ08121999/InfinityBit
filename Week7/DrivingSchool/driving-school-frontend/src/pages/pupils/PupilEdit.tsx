@@ -93,15 +93,15 @@ const PupilEdit = () => {
     },
   })
 
-  if (isLoading) return <div><Spinner /></div>
+  if (isLoading) return <div className='h-screen w-full flex justify-center items-center'><Spinner/></div>
 
   const onSubmit = (values: PupilFormValues) => {
     mutation.mutate(values)
   }
 
   return (
-    <div className="max-w-xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6 text-center">Edit Pupil</h1>
+    <div className=" mx-auto p-4 bg-slate-400">
+      <h1 className="text-3xl font-semibold mb-6 text-center">Edit Pupil</h1>
       <PupilForm
         form={form}
         onSubmit={onSubmit}

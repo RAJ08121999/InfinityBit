@@ -17,7 +17,7 @@ function PupilViewRoute(){
   })
 
   if(isLoading){
-    return <div><Spinner/></div>
+    return <div className='h-screen w-full flex justify-center items-center'><Spinner/></div>
   }
 
   if(isError || !pupil) {

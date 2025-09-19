@@ -1,9 +1,9 @@
 
 const Spinner = () => {
     return (
-        <div className='spinner flex h-screen w-screen justify-center items-center'>
-            <div></div>
-            <div></div>
+        <div className='spinner flex h-full w-full justify-center items-center'>
+            <div className=' flex h-full w-full justify-center items-center'></div>
+            <div className=' flex h-full w-full justify-center items-center'></div>
         </div>
     )
 }
