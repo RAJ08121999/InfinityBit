@@ -32,6 +32,7 @@ export const pupilSchema = z.object({
     .email("Invalid email address")
     .optional()
     .or(z.literal("")),
+    
 
   home: z
     .object({
@@ -75,6 +76,10 @@ export const pupilSchema = z.object({
       message: "License type can only be No License, Provisional, Full License",
     })
     .default("No License"),
+
+    pupilType: z.string().optional().default(""),
+    pupilOwner: z.string().optional().default(""),
+
 
     allowTextMessaging: z.boolean().default(false),
     passedTheory: z.boolean().default(false),

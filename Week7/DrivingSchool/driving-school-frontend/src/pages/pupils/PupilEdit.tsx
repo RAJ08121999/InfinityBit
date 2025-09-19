@@ -1,86 +1,113 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useParams,useNavigate } from "@tanstack/react-router"
+import { useParams, useNavigate } from "@tanstack/react-router"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
+import { useEffect } from "react"
 import axios from "axios"
 import Spinner from "@/assets/Spinner"
-import {z} from "zod"
+import { z } from "zod"
 
-import { pupilSchema} from "@/lib/pupilSchema"
-// import type { Pupil } from "@/lib/pupilType"
-
+import { pupilSchema } from "@/lib/pupilSchema"
 import { PupilForm } from "@/components/PupilForm"
 
 type PupilFormValues = z.infer<typeof pupilSchema>
 
+const API_BASE = "http://localhost:6006/api"
+
 const PupilEdit = () => {
-  const {pupilId} = useParams({from: "/pupils/$pupilId/edit"})
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
+  const { pupilId } = useParams({ from: "/pupils/$pupilId/edit" })
+  const navigate = useNavigate()
+  const queryClient = useQueryClient()
 
+  const form = useForm<PupilFormValues>({
+    resolver: zodResolver(pupilSchema),
+    defaultValues: {
+      forename: "",
+      surname: "",
+      email: "",
+      dob: "",
+      gender: "Male",
+      home: { mobile: "", work: "" },
+      pickupAddress: { postcode: "", houseNo: "", address: "" },
+      homeAddress: { postcode: "", houseNo: "", address: "" },
+      licenseType: "No License",
+    },
+  })
 
-const form = useForm<PupilFormValues>({
-  resolver: zodResolver(pupilSchema),
-  defaultValues: {
-    forename:"",
-    surname:"",
-    email:"",
-    dob:"",
-    gender:"Male",
-    home:{ mobile:"", work:"" },
-    licenseType:"No License",
-  },
-});
+  // fetch pupil data
+  const { data: pupil, isLoading } = useQuery({
+    queryKey: ["pupil", pupilId],
+    queryFn: async () => {
+      const res = await axios.get(`${API_BASE}/pupils/${pupilId}`)
+      return res.data.data || res.data
+    },
+  })
 
-const { data:pupil, isLoading} = useQuery({
-  queryKey:["pupil",pupilId],
-  queryFn:async () =>{
-    const res = await axios.get(`http://localhost:3000/api/pupils/${id}`)
-    return res.data;
-  },
-  onSuccess:(data)=>{
-    form.reset({
-      forename: data.forename,
-      surname: data.surname,
-      email: data.email,
-      dob: data.dob,
-      gender: data.gender,
-      home: { mobile: data.home?.mobile || "", work: data.home?.work || "" },
-      licenseType: data.licenseType,
-    })
-  },
-});
+  // when query resolves, update the form values
+  useEffect(() => {
+    if (pupil) {
+      form.reset({
+        ...pupil,
+        dob: pupil.dob ? pupil.dob.split("T")[0] : "",
+        gender: pupil.gender || "Male",
+        home: pupil.home || { mobile: "", work: "" },
+        pickupAddress: pupil.pickupAddress || {
+          postcode: "",
+          houseNo: "",
+          address: "",
+        },
+        homeAddress: pupil.homeAddress || {
+          postcode: "",
+          houseNo: "",
+          address: "",
+        },
+        licenseType: pupil.licenseType || "No License",
+        allowTextMessaging: pupil.allowTextMessaging ?? false,
+        passedTheory: pupil.passedTheory ?? false,
+        fott: pupil.fott ?? false,
+        fullAccess: pupil.fullAccess ?? false,
+        pupilCaution: pupil.pupilCaution ?? false,
+        discount: pupil.discount || "0%",
+      })
+    }
+  }, [pupil, form])
 
-const mutation = useMutation({
-  mutationFn:async(values:PupilFormValues)=>{
-    const res = await axios.put(`http://localhost:3000/api/pupils/${id}`,values)
-    return res.data
-  },
-  onSuccess:()=>{
-    queryClient.invalidateQueries({ queryKey:["pupils"]})
-    navigate({to:"/pupils"})
-  },
+  const mutation = useMutation({
+    mutationFn: async (values: PupilFormValues) => {
+      const payload = {
+        ...values,
+        dob: values.dob ? new Date(values.dob).toISOString() : undefined,
+      }
+      console.log("submitting update payload:", payload)
+      return await axios.put(`${API_BASE}/pupils/${pupilId}`, payload)
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["pupils"] })
+      navigate({ to: "/pupils" })
+    },
+    onError: (err: any) => {
+      console.error("Mutation Error:", err)
+      console.error("Backend response:", err.response?.data)
+    },
+  })
 
-})
+  if (isLoading) return <div><Spinner /></div>
 
-const onSubmit = (values: PupilFormValues) => {
-  mutation.mutate(values)
-}
+  const onSubmit = (values: PupilFormValues) => {
+    mutation.mutate(values)
+  }
 
-
-if(isLoading) return <div><Spinner/></div>
-
-
-  return(
+  return (
     <div className="max-w-xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">Edit Pupil</h1>
+      <h1 className="text-2xl font-bold mb-6 text-center">Edit Pupil</h1>
       <PupilForm
         form={form}
         onSubmit={onSubmit}
         isPending={mutation.isPending}
         buttonLabel="Update Pupil"
+        disableEmail={true} // keep email locked
       />
     </div>
   )

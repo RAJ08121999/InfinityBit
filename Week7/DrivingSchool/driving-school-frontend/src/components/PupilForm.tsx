@@ -1,19 +1,21 @@
 "use client";
 
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, useForm } from "@/components/ui/form";
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage,} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import type { PupilInput } from "@/lib/pupilType";
+import { useForm } from "react-hook-form"
 
 type PupilFormProps = {
   form: ReturnType<typeof useForm<PupilInput>>; 
   onSubmit: (values: PupilInput) => void; // submit handler
   isPending?: boolean; // for Add/Edit loading state
   buttonLabel: string;
+  disableEmail?:boolean;
 };
 
-export function PupilForm({ form, onSubmit, isPending, buttonLabel }: PupilFormProps) {
+export function PupilForm({ form, onSubmit, isPending, buttonLabel , disableEmail}: PupilFormProps) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -95,7 +97,11 @@ export function PupilForm({ form, onSubmit, isPending, buttonLabel }: PupilFormP
             <FormItem>
               <FormLabel>Email Address</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="Enter your email" {...field} />
+                <Input 
+                  {...field}
+                  disabled={disableEmail}
+                  type="email" 
+                  placeholder= {disableEmail ? "Email can not be edited " : "Enter your email"}  />
               </FormControl>
               <FormMessage />
             </FormItem>

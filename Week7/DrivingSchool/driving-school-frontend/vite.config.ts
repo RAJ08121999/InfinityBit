@@ -23,4 +23,8 @@ export default defineConfig({
       "@":path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    port: 5174,   // changing from 5173 to 5174 because 5173 is denying access
+    host: true,   // allows access on localhost and network
+  },
 })
