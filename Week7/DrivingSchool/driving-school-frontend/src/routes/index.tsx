@@ -1,3 +1,4 @@
+import Spinner from '@/assets/Spinner'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
@@ -20,6 +21,11 @@ function RouteComponent() {
           Add Pupil
         </a>
       </div>
+      
+      <div className='mt-8'>
+        <Spinner/>
+      </div>
+
     </div>
   )
 }
