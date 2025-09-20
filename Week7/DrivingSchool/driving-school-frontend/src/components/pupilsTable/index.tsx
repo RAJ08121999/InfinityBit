@@ -23,9 +23,10 @@ import { ArrowUp, ArrowDown } from 'lucide-react';
 
 
 export default function PupilsTable() {
-const { data: pupils, isLoading, isError } = useQuery<Pupil[]>({
-    queryKey: ['pupils'],
-    queryFn: getPupils,
+    const navigate = useNavigate();
+    const { data: pupils, isLoading, isError } = useQuery<Pupil[]>({
+        queryKey: ['pupils'],
+        queryFn: getPupils,
 });
 
 const {
@@ -88,7 +89,7 @@ const queryClient = useQueryClient();
 if (isLoading) return <div className='h-screen w-full flex justify-center items-center'><Spinner/></div>;
 if (isError) return <div className="text-xl text-red-600 text-center">Error fetching pupils</div>;
 
-const navigate = useNavigate();
+
 return (
     <div className="p-2">
         <h1 className="text-4xl font-bold mb-4 text-center text-amber-600">Pupils List</h1>
