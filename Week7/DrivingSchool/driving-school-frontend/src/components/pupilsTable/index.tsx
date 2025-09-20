@@ -13,7 +13,7 @@ import Spinner from '@/assets/Spinner';
 import { columns } from './columns';
 import { useTableStore } from '@/store/tableStore';
 
-
+import { useNavigate } from '@tanstack/react-router';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deletePupil } from '@/lib/api';
@@ -88,18 +88,28 @@ const queryClient = useQueryClient();
 if (isLoading) return <div className='h-screen w-full flex justify-center items-center'><Spinner/></div>;
 if (isError) return <div className="text-xl text-red-600 text-center">Error fetching pupils</div>;
 
+const navigate = useNavigate();
 return (
     <div className="p-2">
         <h1 className="text-4xl font-bold mb-4 text-center text-amber-600">Pupils List</h1>
 
-      {/* Global Search */}
-        <Input
-            type="text"
-            placeholder="Search all columns..."
-            value={globalFilter ?? ''}
-            onChange={(e) => setGlobalFilter(e.target.value)}
-            className="input input-bordered mb-2 w-full max-w-sm"
-        />
+      {/* Global Search + Navigation Button to Add Pupil */}
+        <div className="flex items-center justify-around mb-2 w-full max-w-2xl mx-auto space-x-4">
+            <Input
+                type="text"
+                placeholder="Search all columns..."
+                value={globalFilter ?? ''}
+                onChange={(e) => setGlobalFilter(e.target.value)}
+                className="flex-1 input input-bordered"
+            />
+
+            <Button
+                onClick={() => navigate({ to: "/pupils/add" })}
+                className="bg-amber-600 hover:bg-amber-700 text-white"
+            >
+                Add Pupil
+            </Button>
+        </div>
 
       {/* Table */}
         <div className='overflow-auto border rounded-lg'>

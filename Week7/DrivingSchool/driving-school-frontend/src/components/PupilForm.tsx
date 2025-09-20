@@ -139,6 +139,103 @@ export function PupilForm({ form, onSubmit, isPending, buttonLabel , disableEmai
           )}
         />
 
+
+{/*           //pickup address
+          <div className="rounded-lg shadow space-y-3">
+            <h3 className="font-semibold">Pickup Address</h3>
+
+            <FormField
+              control={form.control}
+              name="pickupAddress.postcode"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Postcode</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter postcode" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="pickupAddress.houseNo"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>House No</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter house number" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="pickupAddress.address"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Address</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter address" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          //home address
+          <div className="rounded-lg shadow space-y-3">
+            <h3 className="font-semibold">Home Address</h3>
+
+            <FormField
+              control={form.control}
+              name="homeAddress.postcode"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Postcode</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter postcode" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="homeAddress.houseNo"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>House No</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter house number" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="homeAddress.address"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Address</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter address" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div> 
+          
+          */}
+
         {/* License Type */}
         <FormField
           control={form.control}
