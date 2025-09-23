@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-export const genderOptions = ["Male", "Female", "Others"] as const
+export const genderOptions = ["Male", "Female", "Other"] as const
 export const licenseOptions = ["No License", "Provisional", "Full License"] as const
 
 export const pupilSchema = z.object({
